@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jokes webside </title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <div class="jokes">
+      <% if(jokes){%>
+      <%= jokes %>
+      <%} else{ %>
+        Click bellow button to get jokes 👇
+      <% } %>
+    </div>
+    <div class="btn">
+     <form ><button type="submit" formaction="/getjokes">
+        get jokes
+      </button></form> 
+    </div>
+  </div>
+</body>
+</html>
