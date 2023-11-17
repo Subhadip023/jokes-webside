@@ -2,11 +2,11 @@
 
 ## Overview
 
-This is a simple web application that fetches jokes from an API and displays them on a website. Users can enjoy a good laugh by refreshing the page to get a new joke.
+This is a simple web application that fetches jokes from the [JokeAPI](https://sv443.net/jokeapi/v2/) and displays them on a website. Users can enjoy a good laugh by refreshing the page to get a new joke.
 
 ## Features
 
-- Fetch jokes from an external API.
+- Fetch jokes from the [JokeAPI](https://sv443.net/jokeapi/v2/).
 - Display jokes on the website.
 - Ability to refresh and get a new joke.
 
@@ -15,7 +15,8 @@ This is a simple web application that fetches jokes from an API and displays the
 - HTML
 - CSS
 - JavaScript
-- [Your chosen library or framework for making API requests]
+- Express js (backend)
+
 
 ## Getting Started
 
