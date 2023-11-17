@@ -5,15 +5,17 @@
 body{
     background: #000;
     color: aqua;
+    font-size: 100%;
 }
 .container{
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    
-    height: 95vh;
+    height: 100vh;
+    gap: 10px;
 
 }
 .jokes{
