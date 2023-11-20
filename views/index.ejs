@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jokes webside </title>
-  <link rel="stylesheet" href="main.css">
-</head>
-<body>
+<%- include('partials/header.ejs') %>
+
   <div class="container">
     <div class="jokes">
       <% if(jokes){%>
@@ -21,5 +14,4 @@
       </button></form> 
     </div>
   </div>
-</body>
-</html>
+  <%- include('partials/footer.ejs') %>
