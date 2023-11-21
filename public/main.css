@@ -1,63 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 *{
     margin: 0;
     padding: 0;
 }
-body{
-    background: #000;
-    color: aqua;
-    font-size: 100%;
+.header{
+    display: flex;
+    height: 8vh;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 5px solid aquamarine; */
+    border-bottom:3px solid rgb(3, 99, 99);}
+.title{
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.navsvg{
+    padding: 0;
+    display: block;
+    height: 100%;
+    
+}
+svg{
+    height: 30px;
+}
+h1{
+    font-size: 3rem;
+    color: rgb(3, 99, 99);
 }
 .container{
-    margin-top: 30px;
+    height: 88vh;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh;
-    gap: 10px;
-
 }
 .jokes{
-    margin: auto;
-    display: inline-flex;
-    font-size: 3rem;
-    height: 45vh;
-    width: 60vw;
-    padding: 0 20px;
-justify-content: center;
-text-align: center;
-align-items: center;
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    overflow:scroll;
+    align-items: center;
+    justify-content: center;
+   
 }
-.btn{
-   margin: auto;
-   background: rgb(0, 0, 0);
+.joke{
+    border-radius: 5px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 30px;
+    width: 70vw;
+    height: 300px;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 0 0 10px;
+    background-color: whitesmoke;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+
 }
-button{
-    height: 5vh;
-    width: 20vh;
-    background: #4f84ee;
-    border-radius: 10px;
+.jokefooter{
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
 }
-button:hover{
-    background: #02286e;
-    color: white;
+.copy-button{
+    width:fit-content;
 }
 
+.nav{
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    height: fit-content;
+    box-shadow: 0 0 10px;
+}
+.navsvg{
+   
+    display: none;
+}
+.nav li{
+    list-style: none;
+padding: 10px 0;}
+
+footer{
+    display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'Merriweather Sans', sans-serif;
+padding-top: 4px;
+border-top:2px solid rgb(3, 99, 99);
+
+}
 /* for mobile  */
 
 /* Responsiveness */
 @media (max-width: 768px) {
     
-     .jokes{
-        margin: auto;
-        display: inline-flex;
-        font-size: 25px;
-        height: 45vh;
-        width: 60vw;
-        padding: 0 20px;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
+    .nav{
+        position: absolute;
+        left: 0px;
+        top: 50px;
+        z-index: 5;        display: none;
+        background:whitesmoke;
+    }
+    .navsvg{
+       
+        height: 20px;
+        
+        display: inline;
+    }
+    .container{
+        height: 87.5vh;
+        display: flex;
+    }
+    .jokes{
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        overflow: auto;
+    
+    }
+    .joke{
+        width: 450px;
+        height:fit-content;
+        margin: 10px;
+    
     }
   }

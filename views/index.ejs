@@ -1,17 +1,180 @@
 <%- include('partials/header.ejs') %>
-
-  <div class="container">
-    <div class="jokes">
-      <% if(jokes){%>
-      <%= jokes %>
-      <%} else{ %>
-        Click bellow button to get jokes 👇
-      <% } %>
+  <div class="header">
+    <div class="navsvg" id="navsvg">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
+        <path
+          d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z">
+        </path>
+      </svg>
     </div>
-    <div class="btn">
-     <form ><button type="submit" formaction="/getjokes">
-        get jokes
-      </button></form> 
+    <div class="title">
+      <h1>Jokes Hub</h1>
+    </div>
+ 
+  </div>
+  <div class="container">
+    <div class="nav">
+
+      <h2>Category</h2>
+      <form id="categoryForm" action="/" method="post">
+        <li>
+          <input type="radio" name="category" value="Any" <% if (selectedCategory==='Any' ) { %>checked<% } %>>
+            <label for="Any">Any</label>
+        </li>
+        <li>
+          <input type="radio" name="category" value="Custom" <% if (selectedCategory.includes ('Custom')) { %>checked<%
+            } %>>
+            <label for="Custom"> Custom</label>
+        </li>
+
+        <li>
+          <input type="checkbox" name="category" value="Programming" <% if (selectedCategory.includes('Programming')) {
+            %>checked<% } %> disabled>
+            <label for="Programming">Programming</label>
+        </li>
+        <li>
+          <input type="checkbox" name="category" value="Miscellaneous" <% if
+            (selectedCategory.includes('Miscellaneous')) { %>checked<% } %> disabled>
+            <label for="Miscellaneous"> Miscellaneous</label>
+        </li>
+        <li>
+          <input type="checkbox" name="category" value="Dark" <% if (selectedCategory.includes('Dark')) { %>checked<% }
+            %> disabled>
+            <label for="Dark">Dark</label>
+        </li>
+        <li>
+          <input type="checkbox" name="category" value="Pun" <% if (selectedCategory.includes('Pun')) { %>checked<% } %>
+            disabled>
+            <label for="Pun">Pun</label>
+        </li>
+        <li>
+          <input type="checkbox" name="category" value="Spooky" <% if (selectedCategory.includes('Spooky')) { %>checked
+          <% } %> disabled>
+            <label for="Spooky">Spooky</label>
+        </li>
+        <li>
+          <input type="checkbox" name="category" value="Christmas" <% if (selectedCategory.includes('Christmas')) {
+            %>checked<% } %> disabled>
+            <label for="Christmas">Christmas</label>
+        </li>
+      </form>
+    </div>
+
+    <div class="jokes">
+      <% if(jokes) { %>
+        <% jokes.forEach(joke=> { %>
+          <div class="joke">
+            <p id="joke">            <%= joke.joke %> 🤣
+</p>
+            <div class="jokefooter">
+              <div class="jokrfooter">             <strong>©Jokes Hub</strong> 
+</div>
+              <div>
+              <button onclick="copy_to_clipboard('<%= joke.joke %>')" class="copy-button" data-joke-text="<%= joke.joke %>">
+    <p id="copy">copy</p>
+</button></div>
+              </div>
+          </div>
+          <% }); %>
+            <% } else { %>
+              <p>Click the button below to get jokes 👇</p>
+              <% } %>
+
+
     </div>
   </div>
+
+  <script>
+    var custom = document.querySelector('input[value="Custom"]');
+    var any = document.querySelector('input[value="Any"]');
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var form = document.getElementById('categoryForm');
+    var navsvg = document.getElementById('navsvg');
+    var copyButtons = document.querySelectorAll('.copy-button');
+    var nav=document.querySelector('.nav');
+    function fadeIn(element) {
+  element.style.opacity = 0;
+  element.style.display = "block";
+  (function fade() {
+    var val = parseFloat(element.style.opacity);
+    if (!((val += 0.1) > 1)) {
+      element.style.opacity = val;
+      requestAnimationFrame(fade);
+    }
+  })();
+}
+function copy_to_clipboard(text) {
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            copyButton.innerHTML = "copied";
+        });
+}
+
+copyButtons.forEach(function (button) {
+    button.addEventListener('click', function (event) {
+        var jokeText = event.currentTarget.dataset.jokeText;
+        copy_to_clipboard(jokeText);
+        event.currentTarget.innerHTML = "copied !";
+    });
+});
+
+
+function fadeOut(element) {
+  element.style.opacity = 1;
+  (function fade() {
+    if ((element.style.opacity -= 0.1) < 0) {
+      element.style.display = "none";
+    } else {
+      requestAnimationFrame(fade);
+    }
+  })();
+}
+
+    custom.addEventListener('click', function () {
+      checkboxes.forEach(function (checkbox) {
+        checkbox.disabled = false;
+      });
+    });
+    navsvg.addEventListener("click", function () {
+  if (nav.style.display === "none" || nav.style.display === "") {
+    fadeIn(nav);
+    navsvg.innerHTML = `
+      <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"  />
+      </svg>`;
+    navsvg.style.padding = "0 40px";
+  } else {
+    fadeOut(nav);
+    setTimeout(function () {
+      navsvg.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
+          <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"></path>
+        </svg>`;
+      navsvg.style.padding = "0";
+    }, 400); // Adjust the timeout to match the fadeOut duration
+  }
+});
+
+    any.addEventListener('click', function () {
+      checkboxes.forEach(function (checkbox) {
+        checkbox.disabled = true;
+        form.submit();
+      });
+    });
+    checkboxes.forEach(function (checkbox) {
+      <% if (selectedCategory.includes('Custom')) { %>
+        checkbox.disabled = false;
+      <% } else { %>
+        checkbox.disabled = true;
+      <% } %>
+    });
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener('change', function () {
+        setTimeout(function () {
+          form.submit();
+        }, 2000);
+      });
+    });
+  </script>
+
   <%- include('partials/footer.ejs') %>
