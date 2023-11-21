@@ -98,7 +98,10 @@ border-top:2px solid rgb(3, 99, 99);
 
 /* Responsiveness */
 @media (max-width: 768px) {
-    
+    h1{
+        font-size: 2rem;
+        color: rgb(3, 99, 99);
+    }
     .nav{
         position: absolute;
         left: 0px;
