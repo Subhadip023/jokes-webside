@@ -116,7 +116,7 @@ border-top:2px solid rgb(3, 99, 99);
         display: inline;
     }
     .container{
-        height: 85vh;
+        height: 80vh;
         display: flex;
     }
     .jokes{
